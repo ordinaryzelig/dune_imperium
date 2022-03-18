@@ -1,0 +1,49 @@
+convincing_argument:
+  reveal_box:
+    - persuasion-2
+dagger:
+  agent_icons:
+    - landsraad
+  reveal_box:
+    - strength-1
+diplomacy:
+  agent_icons:
+    - emperor
+    - spacing_guild
+    - bene_gesserit
+    - fremen
+  reveal_box:
+    - persuasion-1
+dune_the_dessert_planet:
+  agent_icons:
+    - spice_trade
+  reveal_box:
+    - persuasion 1
+reconnaissance:
+  agent_icons:
+    - city
+  reveal_box:
+    persuasion-1
+seek_allies:
+  agent_icons:
+    - emperor
+    - spacing_guild
+    - bene_gesserit
+    - fremen
+  agent_box:
+    - trash_this_card
+signet_ring:
+  agent_icons:
+    - landsraad
+    - city
+    - spice_trade
+  agent_box:
+    - signet_ring
+  reveal_box:
+    - persuasion-1
+worm_rider:
+  agent_icons:
+    - city
+    - spice_trade
+  agent_box:
+    - spice_2

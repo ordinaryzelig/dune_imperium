@@ -1,20 +1,23 @@
 class Player
 
   # Cards
-  attr_reader :cards_in_draw_deck
-  attr_reader :cards_in_hand
-  attr_reader :cards_in_play
+  attr_accessor :cards_in_draw_deck
+  attr_accessor :cards_in_hand
+  attr_accessor :cards_in_play
 
-  # Resources
-  attr_reader :solari
-  attr_reader :water
-  attr_reader :spice
+  RESOURCE_FIELDS = %i[
+    solari
+    water
+    spice
+  ].each do |resource|
+    attr_accessor resource
+  end
 
   # Misc.
-  attr_reader :leader
-  attr_reader :has_swordmaster
-  attr_reader :has_high_council
-  attr_reader :is_first_player
+  attr_accessor :leader
+  attr_accessor :has_swordmaster
+  attr_accessor :has_high_council
+  attr_accessor :is_first_player
 
   FACTIONS = %i[
     emperor
@@ -24,11 +27,20 @@ class Player
   ]
 
   FACTIONS.each do |faction|
-    attr_reader :"#{faction}_influence"
-    attr_reader :"has_#{faction}_alliance"
+    attr_accessor :"#{faction}_influence"
+    attr_accessor :"has_#{faction}_alliance"
   end
 
-  attr_reader :victory_points
+  attr_accessor :victory_points
+
+  def initialize
+    @cards_in_draw_deck = []
+    @cards_in_hand      = []
+    @cards_in_play      = []
+    RESOURCE_FIELDS.each do |field|
+      send("#{field}=", 0)
+    end
+  end
 
   def calculate_victory_points
     (
@@ -38,6 +50,15 @@ class Player
       conflict_victory_points +
       intrigue_victory_points
     )
+  end
+
+  def add_card(card)
+    card.player = self
+    @cards_in_draw_deck << card
+  end
+
+  def draw_hand
+    @cards_in_hand.push *@cards_in_draw_deck.first(5)
   end
 
 private
